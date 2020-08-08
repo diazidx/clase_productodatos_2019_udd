@@ -1,60 +1,80 @@
 
-# Laboratorio: Publicando un modelo de deep learning en Heroku
+# Laboratorio: MODELO DE DEEP LEARNING PARA DETERMINAR LA EDAD DE UNA PERSONA
 
+Proyecto 1 para el ramo de Productos de Datos del Magister en Data Science de la Universidad del Desarrollo. 
+Elaborado por: Israel Diaz G.
 
-> Una revisión de todo el camino necesario para publicar nuestro primer Producto de Datos. Ejemplo disponible en https://facemask-udd.herokuapp.com/
+La aplicación se encuentra disponible en https://5e18ebada7ab.ngrok.io/
 
+## Recursos utilizados
 
-## Antes de empezar
-
-- Para poder realizar este laboratorio se necesita una cuenta en [GitHub](https://www.github.com/) y [Heroku](https://www.heroku.com/). Ambas son gratuitas y les serán muy útiles en el futuro.
-- Se asume que el computador de cada estudiante tiene Python y Jupyter Notebook instalados (requisitos de varios cursos anteriores del programa). Si no es el caso, recomiendo seguir algún tutorial como esta [guía para instalar Jupyter Notebook en Windows 10](https://medium.com/@kswalawage/install-python-and-jupyter-notebook-to-windows-10-64-bit-66db782e1d02).
+- El código en este repositorio se ha ejecutado en una maquina virtual de GCP con 8 nucleos, si la maquina utiliza menos de 8 nuclos podría presentar problemas con la librería OpenCV. 
+- Librerías: opencv-contrib-python, numpy, flask, dlib.
+- ngrok tunnel.
 
 ## Instalación de librerías necesarias
 
-### Pytorch
-
-- Seguir las [instrucciones oficiales](https://pytorch.org/get-started/locally/) seleccionando el sistema operativo correspondiente.
-
-### fastai [(instrucciones)](https://docs.fast.ai/install.html)
+### Numpy
 ```
-pip install fastai
+pip install numpy
 ```
 
-### Flask [(instrucciones)](https://flask.palletsprojects.com/en/1.1.x/installation/)
+### dlib 
+Para linux, se requieren las siguientes librerias del sistema:
+```
+sudo apt-get update
+sudo apt-get install build-essential cmake
+sudo apt-get install libopenblas-dev liblapack-dev 
+sudo apt-get install libx11-dev libgtk-3-dev
+sudo apt-get install python python-dev python-pip
+sudo apt-get install python3 python3-dev python3-pip
+```
+Luego se puede instalar dlib
+```
+pip install dlib
+```
+
+### OpenCV
+```
+pip install opencv-contrib-python
+```
+
+### Flask
 ```
 pip install Flask
 ```
-### Si se desea modificar aún más la aplicación web, se recomienda usar un [ambiente virtual](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) (además es una muy buena práctica al momento de programar en Python)
+
+### ngrok
+Ngrok es una aplicación para crear un tunnel que permita acceder a la url localhost de una maquina. Para realizar el setup de esta app se recomienda seguir las instrucciones en la documentación de https://ngrok.com/
+
+### Se recomienda el uso de un ambiente dedicado. Ver: https://medium.com/@m.monroyc22/configurar-entorno-virtual-python-a860e820aace
+
 
 ## Construcción del Modelo de Deep Learning
 
-- Se deben seguir las instrucciones explicadas en este [notebook](https://github.com/aastroza/clase_productodatos_2019_udd/blob/master/notebooks/ejemplo_clasificador_fastai.ipynb).
-
-## Modificación de la aplicación web
-
-### Poner el modelo (archivo .pkl) en la carpeta `models` 
-
-### Cambiar los nombres de las clases
-
-- Abrir "app.py" y buscar la variable llamada `classes` y cambiar su contenido con las clases del clasificador propio.
-
-### Modificaciones de la Interfaz
-
-- Modificar los archivos en los directorios `templates` y `static`.
-
-- `index.html` maneja la parte gráfica y `main.js` el comportamiento.
+- Los detalles del modelo utilizado se explica en detalle en el siguiente articulo web: https://www.pyimagesearch.com/2020/04/13/opencv-age-detection-with-deep-learning/.
 
 
+## Levantar 
 
-## Conexión con Heroku
+Para levantar el servidor flask, se debe establecer la app y el ambiente:
 
-- El primer paso es crear una aplicación y darle un nombre.
+En linux:
+```
+export FLASK_APP=app.py
+export FLASK_ENV=development
+flask run
+```
 
-- En "Deployment Method" escoger "Connect to Github" y seguir las instrucciones.
+En otra terminal, se debe ejecutar el tunnel ngrok
+```
+./ngrok http 5000
+```
+Este comando devuelve una url a la que se puede acceder para tener acceso a la aplicación.
 
-- Una vez que esté listo, aparecerá un link para revisar la aplicacion en el navegador, como este: https://facemask-udd.herokuapp.com/
+## ENJOY!
 
 ## Créditos
 
-- La construcción del modelo está basada en las clases de [Francisco Ingham y Jeremy Howard](https://github.com/fastai/course-v3/blob/master/nbs/dl1/lesson2-download.ipynb). La aplicacion web está inspirada en el trabajo de [Shankar Jha](https://github.com/shankarj67/Water-classifier-fastai).
+- El modelo se ha desarrollado utilizando la metodología presentada en PyImageSearch.com
+
