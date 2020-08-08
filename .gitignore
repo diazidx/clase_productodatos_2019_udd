@@ -10,6 +10,9 @@ __pycache__/
 *.jpg
 *.jpeg
 
+#APP
+ngrok
+
 # Distribution / packaging
 .Python
 build/
