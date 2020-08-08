@@ -1,1 +1,0 @@
-La imagen que el usuario suba se almacenará aquí para el procesamiento.
