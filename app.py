@@ -1,17 +1,8 @@
 from __future__ import division, print_function
 # coding=utf-8
-import sys
-import os
-import glob
-import re
-from pathlib import Path
 import numpy as np
 import cv2
 import os
-
-# Import fast.ai Library
-# from fastai import *
-# from fastai.vision import *
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
@@ -19,11 +10,6 @@ from werkzeug.utils import secure_filename
 
 # Define a flask app
 app = Flask(__name__)
-
-
-# path = Path("models")
-# learn = load_learner(path)
-
 
 def model_predict(img_path):
     """
@@ -92,7 +78,7 @@ def model_predict(img_path):
             cv2.putText(image, text, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
 
         # display the output image
-        cv2.imwrite("uploads/result.png", image)
+        cv2.imwrite(img_path, image)
     return text
     # cv2.imshow("Image", image)
     # cv2.waitKey(0)
