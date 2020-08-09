@@ -9,6 +9,7 @@ __pycache__/
 # IMAGE extensions
 *.jpg
 *.jpeg
+*.png
 
 #APP
 ngrok
