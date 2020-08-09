@@ -5,11 +5,12 @@ import cv2
 import os
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 
 # Define a flask app
 app = Flask(__name__)
+
 
 def model_predict(img_path):
     """
@@ -90,16 +91,20 @@ def index():
     return render_template('index.html')
 
 
+file_name= ''
+
+
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
+    global file_name
     if request.method == 'POST':
         # Get the file from post request
         f = request.files['file']
 
         # Save the file to ./uploads
         basepath = os.path.dirname(__file__)
-        file_path = os.path.join(
-            basepath, 'uploads', secure_filename(f.filename))
+        file_name = secure_filename(f.filename)
+        file_path = os.path.join(basepath, 'uploads', file_name)
         f.save(file_path)
 
         # Make prediction
@@ -107,5 +112,12 @@ def upload():
         return preds
     return None
 
+
+@app.route('/get-file/', methods=['GET'])
+def get_file():
+    global file_name
+    fpath = 'uploads/' + file_name
+    return send_file(fpath, as_attachment=True, attachment_filename=file_name)
+
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0/0", port = 5000)
+    app.run(debug=True, host="0.0.0.0/0", port=5000)

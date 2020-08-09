@@ -26,6 +26,13 @@
         <span> </span>
     </h3>
 
+    <div class="download-section" style="display:none;">
+        <div>
+{#            <button type="button" class="btn btn-primary btn-lg " id="btn-download">¡Descargar Resultado!</button>#}
+            <a href = {{ url_for('get_file') }} type="button" class="btn btn-primary btn-lg " id="btn-download">¡Descargar Resultado!</a>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
