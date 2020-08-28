@@ -4,7 +4,7 @@
 Proyecto 1 para el ramo de Productos de Datos del Magister en Data Science de la Universidad del Desarrollo. 
 Elaborado por: Israel Diaz G.
 
-La aplicación se encuentra disponible en https://5f5dc2967655.ngrok.io
+La aplicación se encuentra disponible en https://cffd79268c0d.ngrok.io
 
 ## Recursos utilizados
 
