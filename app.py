@@ -6,10 +6,12 @@ import os
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template, send_file, send_from_directory
+from flask_bootstrap import Bootstrap
 from werkzeug.utils import secure_filename
 
 # Define a flask app
 app = Flask(__name__)
+Bootstrap(app)
 
 
 def model_predict(img_path):

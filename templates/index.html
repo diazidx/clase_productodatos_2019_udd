@@ -1,38 +1,81 @@
 {% extends "base.html" %} {% block content %}
 
-<h2>Carga una imagen</h2>
+<div class="jumbotron">
+    <h1 class="display-4">Securitas</h1>
+    <p class="lead">Servicios de reconocimiento y seguridad.</p>
+    <hr class="my-4">
+    <p>
+        Securitas provee de servicios de reconocimiento facial que permite determinar caracteristicas biométricas de personas via el uso de algoritmos de deep learning.
+        La seguridad es importante, por lo que, en caso de amenazas, tener caracterizadas a las personas que ingresan o salen de tu empresa te permitirá tener un mejor control
+        de tu seguridad.
 
-<div>
-    <form id="upload-file" method="post" enctype="multipart/form-data">
-        <label for="imageUpload" class="upload-label">
-            Cargar
-        </label>
-        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
-    </form>
+        Securitas cuenta con sistemas de reconocimiento en tiempo real. 
+    </p>
+    <p>    
+        Pruebe nuestro sistema de reconocimiento de grupo etario haciendo Click en el siguiente botón. 
+    </p>
 
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#prueba" role="button" aria-expanded="false" aria-controls="prueba">Prueba</a>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#contacto" aria-expanded="false" aria-controls="contacto">Contactenos</button>
+      </p>
+      <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="prueba">
+                <div class="card card-body">
+                    <h2>Carga una imagen</h2>
+                    <div>
+                        <form id="upload-file" method="post" enctype="multipart/form-data">
+                            <label for="imageUpload" class="upload-label">
+                                Cargar
+                            </label>
+                            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+                        </form>
+
+                        <div class="image-section" style="display:none;">
+                            <div class="img-preview">
+                                <div id="imagePreview">
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-lg " id="btn-predict">¡Estimar edad!</button>
+                            </div>
+                        </div>
+
+                        <div class="loader" style="display:none;"></div>
+
+                        <h3 id="result">
+                            <span> </span>
+                        </h3>
+
+                        <div class="download-section" style="display:none;">
+                            <div>
+                    {#            <button type="button" class="btn btn-primary btn-lg " id="btn-download">¡Descargar Resultado!</button>#}
+                                <a href = {{ url_for('get_file') }} type="button" class="btn btn-primary btn-lg " id="btn-download">¡Descargar Resultado!</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="contacto">
+                    <div class="card card-body">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ url_for('static', filename='imgs/contacte.jpeg') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">
+                                  Para mas informacion sobre los productos y servicios de Securitas, contacte al mail:
+                                  contacte@securitas_no_existe.cl o mediante el telefono: +56-9-13579513
+                              </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-        <div>
-            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">¡Estimar edad!</button>
-        </div>
-    </div>
-
-    <div class="loader" style="display:none;"></div>
-
-    <h3 id="result">
-        <span> </span>
-    </h3>
-
-    <div class="download-section" style="display:none;">
-        <div>
-{#            <button type="button" class="btn btn-primary btn-lg " id="btn-download">¡Descargar Resultado!</button>#}
-            <a href = {{ url_for('get_file') }} type="button" class="btn btn-primary btn-lg " id="btn-download">¡Descargar Resultado!</a>
-        </div>
-    </div>
-
-</div>
-
+      </div>
+  </div>
 {% endblock %}

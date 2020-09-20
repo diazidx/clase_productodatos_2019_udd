@@ -4,6 +4,8 @@ $(document).ready(function () {
     $('.loader').hide();
     $('#result').hide();
     $('.download-section').hide();
+    $('.prueba').hide();
+
 
     // Upload Preview
     function readURL(input) {
